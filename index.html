@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(() => { /* wait for document to load "alternative to putting script last*/
+
+            $(function () {
+                const drag = $("img").draggable();   /*make html item (baxter) draggable*/
+                const winAlert = $('h2')
+                const drop = $("#droppable").droppable({  /*create a var associated with the drop area*/
+                    drop: function (event) { /*call a function when baxter is dropped correctly in the assigned div */
+                        $("button").click(() => { /* create a function to alert the user of the successful drop*/
+                            winAlert.append("you captured Baxter! Good Job!") // append winners alert to the existing h2
+                            const btnReset = document.createElement('BUTTON'); // create a button to allow refreshing the page to start new game.
+                            winAlert.append(btnReset) // append the button to appear in the h2 after game is finished
+                            btnReset.innerHTML = 'Reset';
+                            btnReset.addEventListener('click', function () { // add click event listener to refresh page. 
+                                location.reload();
+                            })
+                        });
+
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        h1 {
+            font-family: 'Goldman', cursive;
+            margin: auto;
+            max-width: fit-content;
+        }
+
+        .d {
+            height: 75px;
+            width: 75px;
+            background-color: black;
+        }
+
+        .start {
+            height: 200px;
+            width: 200px;
+            border: 1px solid black;
+        }
+
+        .end {
+            margin: auto;
+            height: 200px;
+            width: 200px;
+
+        }
+
+        .div {
+            margin-left: auto;
+            margin-right: 3px;
+            height: 250px;
+            width: 250px;
+            background-image: url(https://content.mycutegraphics.com/graphics/dogs/dog-house.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+
+
+
+        }
+
+        button {
+            margin: 5px;
+            margin-left: 100px;
+            margin-top: 60px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- create something to drag-->
+    <!-- create an area for it to be dropped-->
+    <!--Create a submit button to call a function-->
+    <h1>Put baxter in his doghouse!</h1>
+    <h2></h2>
+    <div class="start"><img src="https://superawesomevectors.com/wp-content/uploads/2015/12/dog-vector-doodle.jpg"
+            width="100px" height="100px"></div>
+    <div class="div">
+        <div class="end" id="droppable"></div>
+        <button type="submit">Im Done!</button>
+    </div>
+</body>
+
+</html>
